@@ -1,6 +1,8 @@
 # dot-files — v2.0
 
-my arch-hyprland dot-files. a setup script is included in the repo for easier installation.
+this are my arch-hyprland dot-files.
+
+note: a setup script is also included in the repo for easier installation.
 
 ## Contents
 
@@ -57,9 +59,6 @@ To install: open `helium://extensions`, enable Developer mode, click **Load unpa
 ### Stylus CSS
 `stylus/stylus-chrome-extension.css` — forces `JetBrainsMono Nerd Font` and disables rounded corners on all websites. Import into the **Stylus** browser extension, set to apply on **All URLs**.
 
-### Wallpaper
-Wallpaper — set via `awww img ~/walls/your-wallpaper.png` (not included).
-
 ### Desktop Entries
 Hidden system apps (`NoDisplay=true`): Avahi, Foot, xgps, ranger, nvidia-settings, mpv, qv4l2, qvidcap.
 
@@ -86,10 +85,10 @@ Run `./setup.sh` and choose a mode:
 ### Mode 1 — Custom (for anyone)
 1. Pick an accent color (or keep the default purple `#cba6f7`)
 2. Select which web app desktop entries to install
-3. Interactive menu for core configs, mouse, headset, wallpaper
+3. Interactive menu for core configs, mouse, headset
 
 ### Mode 2 — [Owner] (rifat's fast full restore)
-Skips all prompts — applies purple accent, installs all apps, configures mouse + headset + wallpaper in one go.
+Skips all prompts — applies purple accent, installs all apps, configures mouse + headset in one go.
 
 ### Menu Options (Custom mode)
 
@@ -109,3 +108,6 @@ Skips all prompts — applies purple accent, installs all apps, configures mouse
 
 ### After running
 
+1. Reload Helium-Adapt theme in Helium (helium://extensions)
+2. Import stylus/stylus-chrome-extension.css into Stylus
+3. Reboot or relogin to pick up GTK/font changes
