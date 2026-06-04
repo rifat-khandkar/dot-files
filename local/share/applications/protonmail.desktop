@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Proton Mail
+Exec=helium-browser --new-window "https://mail.proton.me/u/0/inbox"
+Icon=web-browser
+Terminal=false
+Type=Application
+Categories=Network;

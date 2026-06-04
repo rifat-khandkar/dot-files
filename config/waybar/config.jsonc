@@ -1,0 +1,89 @@
+{
+    "height": 0,
+    "spacing": 0,
+
+    "margin-top": "0",
+    "margin-left": "0",
+    "margin-right": "0",
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "custom/clock"
+    ],
+
+    "modules-right": [
+        "custom/mouse-usb",
+        "custom/mouse-battery",
+        "cpu",
+        "custom/memory",
+        "custom/headset-battery",
+        "pulseaudio",
+        "custom/bluetooth"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+
+    "custom/clock": {
+        "exec": "/home/rifat/.config/waybar/scripts/clock.sh",
+        "return-type": "json",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "interval": 2,
+        "tooltip": false,
+        "states": {
+            "warning": 60
+        }
+    },
+
+    "custom/memory": {
+        "exec": "/home/rifat/.config/waybar/scripts/memory.sh",
+        "return-type": "json",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "custom/mouse-usb": {
+        "exec": "/home/rifat/.config/waybar/scripts/mouse-usb.sh",
+        "return-type": "json",
+        "tooltip": false
+    },
+
+    "custom/mouse-battery": {
+        "exec": "/home/rifat/.config/waybar/scripts/peripherals.sh mouse",
+        "return-type": "json",
+        "tooltip": false
+    },
+
+    "custom/headset-battery": {
+        "exec": "/home/rifat/.config/waybar/scripts/peripherals.sh headset",
+        "return-type": "json",
+        "tooltip": false
+    },
+
+    "custom/bluetooth": {
+        "exec": "/home/rifat/.config/waybar/scripts/bluetooth.sh",
+        "return-type": "json",
+        "on-click": "foot bluetoothctl",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": " {volume}%",
+        "format-muted": " muted",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step": 5,
+        "tooltip": false
+    }
+}

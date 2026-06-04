@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=ATK Hub
+Exec=helium-browser --new-window "https://hub.atk.pro/"
+Icon=web-browser
+Terminal=false
+Type=Application
+Categories=Network;

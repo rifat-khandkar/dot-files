@@ -1,0 +1,7 @@
+*:not([class*="icon"]):not([class*="fa"]):not([class*="glyph"]):not([class*="material"]):not(i):not(.material-icons) {
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace !important;
+}
+
+* {
+    border-radius: 0 !important;
+}

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=PW
+Exec=helium-browser --new-window "https://www.pw.live/study-v2/study"
+Icon=web-browser
+Terminal=false
+Type=Application
+Categories=Network;

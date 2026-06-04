@@ -1,0 +1,169 @@
+* {
+    font-family: "CaskaydiaCove Nerd Font", "CaskaydiaCove NF", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background-color: rgba(15, 15, 15, 0.9);
+    color: #cccccc;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces {
+    padding: 3px 6px;
+    margin: 4px 0 4px 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#workspaces button {
+    padding: 0 4px;
+    margin: 0 2px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #3b403c;
+    min-width: 18px;
+}
+
+#workspaces button:not(.empty) {
+    color: #e0e0e0;
+}
+
+#workspaces button.active {
+    color: #cba6f7;
+}
+
+#workspaces button.urgent {
+    color: #cba6f7;
+}
+
+#workspaces button:hover {
+    background: transparent;
+}
+
+#custom-mouse-usb,
+#custom-mouse-battery,
+#cpu,
+#custom-memory,
+#custom-headset-battery,
+#pulseaudio,
+#custom-bluetooth,
+#custom-clock,
+#clock {
+    padding: 3px 10px;
+    margin: 4px 0 4px 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#custom-mouse-usb {
+    margin-left: 10px;
+}
+
+#custom-mouse-battery {
+    margin-left: 10px;
+}
+
+#pulseaudio {
+    margin-left: 5px;
+}
+
+#custom-bluetooth {
+    margin-right: 5px;
+}
+
+#cpu.warning {
+    color: #e57373;
+}
+
+#custom-memory.warning {
+    color: #ef934d;
+}
+
+#custom-memory.critical {
+    color: #f0a0a0;
+}
+
+#pulseaudio.muted {
+    color: #444444;
+}
+
+#custom-mouse-battery.warning,
+#custom-headset-battery.warning {
+    color: #ef934d;
+}
+
+#custom-mouse-battery.critical,
+#custom-headset-battery.critical {
+    color: #f0a0a0;
+}
+
+
+
+#custom-mouse-usb.charging {
+    color: #81c784;
+}
+
+#custom-mouse-usb.hidden {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    min-width: 0;
+    opacity: 0;
+}
+
+#custom-clock.night {
+    color: #e57373;
+}
+
+#custom-bluetooth.on {
+    color: #ffffff;
+}
+
+#custom-bluetooth.off {
+    color: #555555;
+}
+
+#custom-bluetooth.connected {
+    color: #cba6f7;
+}
+
+#custom-bluetooth.hidden {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    min-width: 0;
+    opacity: 0;
+}
+
+#custom-mouse-battery.hidden,
+#custom-headset-battery.hidden {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    min-width: 0;
+    opacity: 0;
+}
+
+tooltip {
+    background: #141514;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+}
+
+tooltip label {
+    color: #cccccc;
+    font-size: 14px;
+}

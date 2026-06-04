@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "Helium-Adapt",
+  "theme": {
+    "colors": {
+      "frame": [15, 15, 15],
+      "frame_inactive": [15, 15, 15],
+      "toolbar": [15, 15, 15],
+      "tab_text": [204, 204, 204],
+      "tab_background_text": [59, 64, 60],
+      "bookmark_text": [204, 204, 204],
+      "ntp_background": [15, 15, 15],
+      "ntp_text": [204, 204, 204],
+      "ntp_link": [203, 166, 247],
+      "omnibox_text": [204, 204, 204],
+      "omnibox_background": [15, 15, 15],
+      "toolbar_text": [204, 204, 204],
+      "toolbar_button_icon": [204, 204, 204]
+    }
+  }
+}
