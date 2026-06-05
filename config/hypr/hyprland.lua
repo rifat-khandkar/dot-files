@@ -44,7 +44,12 @@ local menu        = "fuzzel"
 
 hl.on("hyprland.start", function () 
   hl.exec_cmd("waybar")
+  hl.exec_cmd("mako")
+  hl.exec_cmd("wl-paste --watch cliphist store &")
+  hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent &")
   hl.exec_cmd("awww-daemon")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme Papirus 2>/dev/null")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic 2>/dev/null")
 --  hl.exec_cmd("")
 end)
 
@@ -55,11 +60,43 @@ end)
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
+hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
 
+-- ToolKit Backend Variables
+
+hl.env("GDK_BACKEND", "wayland,x11,*")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
+hl.env("SDL_VIDEODRIVER", "wayland")
+hl.env("CLUTTER_BACKEND", "wayland")
+
+-- XDG Specifications
+
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+
+-- Qt Variables
+
+hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
+hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
+
+-- NVIDIA Specific
+
+hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GL_GSYNC_ALLOWED", 0)
+hl.env("__GL_VRR_ALLOWED", 0)
+
+-- NVIDIA fixes
+
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("NVD_BACKEND", "direct")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -227,7 +264,7 @@ hl.config({
 
         follow_mouse = 1,
 
-        sensitivity = 0.2, -- -1.0 - 1.0, 0 means no modification.
+        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 	
 	accel_profile = flat,
 
@@ -263,7 +300,8 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | sed 's/\\t/  /' | fuzzel --dmenu --width=45 | awk '{print $1}' | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
@@ -278,6 +316,7 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("printf 'Shutdown\nReboot\nLogout' | fuzzel --dmenu --width=14 --lines=3 --anchor=center --prompt='' --placeholder='' | while read -r c; do case $c in Shutdown) systemctl poweroff;; Reboot) systemctl reboot;; Logout) hyprctl dispatch exit;; esac; done"))
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
@@ -307,7 +346,6 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = tr
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
-
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -358,3 +396,7 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+------------------------
+---- EXTRA KEYBINDS ----
+------------------------
