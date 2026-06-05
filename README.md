@@ -111,3 +111,55 @@ Skips all prompts — applies purple accent, installs all apps, configures mouse
 1. Reload Helium-Adapt theme in Helium (helium://extensions)
 2. Import stylus/stylus-chrome-extension.css into Stylus
 3. Reboot or relogin to pick up GTK/font changes
+
+### Required Packages
+
+**NVIDIA SETUP**
+
+``sudo pacman -S nvidia-open-dkms linux-zen-headers nvidia-utils lib32-nvidia-utils libva-nvidia-driver`` 
+
+*add "nvidia nvidia_modeset nvidia_uvm nvidia_drm" in MODESET() in /etc/mkinitcpio.conf and then do mkinitcpio -P"
+
+**PIPEWIRE SETUP**
+
+``sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber``
+
+``systemctl --user enable --now pipewire wireplumber``
+
+**BLUETOOTH SETUP**
+
+``sudo pacman -S bluez bluez-utils``
+
+``sudo systemctl enable --now bluetooth``
+
+**FONTS**
+
+``sudo pacman -S ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd``
+
+**DE AND ESSENTIALS**
+
+``sudo pacman -S hyprland fuzzel foot waybar awww hyprpolkitagent ranger cliphist mako xdg-desktop-portal-hyprland``
+
+``sudo systemctl enable --now hyprpolkitagent``
+
+``systemctl --user enable --now mako ``
+
+``systemctl --user enable --now cliphist``
+
+**BROWSER**
+
+``yay -S helium-browser bin``
+
+**LOGIN MANAGER**
+
+``sudo pacman -S greetd greetd-tuigreet``
+
+**ACCESSORIES**
+
+``yay -S bibata-cursor-theme papirus-icon-theme``
+
+
+
+
+
+
