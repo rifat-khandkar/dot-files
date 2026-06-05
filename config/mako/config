@@ -1,0 +1,17 @@
+font=CaskaydiaCove Nerd Font 13
+background-color=#0f0f0fe6
+text-color=#cccccc
+border-color=#ffffff14
+border-radius=0
+border-size=1
+width=380
+height=160
+padding=12,16
+margin=12
+icons=0
+max-visible=6
+sort=-time
+layer=overlay
+anchor=top-right
+group-by=app-name
+default-timeout=5000
