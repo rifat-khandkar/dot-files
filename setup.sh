@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 GREEN='\033[1;32m'
 CYAN='\033[1;36m'
@@ -18,7 +18,6 @@ apply_accent() {
     local hex="$1"
     hex="${hex#"#"}"
     hex="${hex,,}"
-    # Convert to RGB 0-1000 for ranger curses
     local r=$(( 16#${hex:0:2} * 1000 / 255 ))
     local g=$(( 16#${hex:2:2} * 1000 / 255 ))
     local b=$(( 16#${hex:4:2} * 1000 / 255 ))
@@ -51,7 +50,6 @@ pick_webapps() {
         esac
     done
 
-    # Remove unselected desktop entries after copy
     for f in ~/.local/share/applications/*.desktop; do
         base=$(basename "$f" .desktop)
         keepit=false
@@ -60,7 +58,6 @@ pick_webapps() {
         done
         case "$base" in
             avahi-discover|bssh|bvnc|foot|footclient|foot-server|mpv|nvidia-settings|qv4l2|qvidcap|ranger|xgps|xgpsspeed)
-                # System apps — keep with NoDisplay=true (already set)
                 ;;
             *)
                 if ! $keepit; then
@@ -168,6 +165,23 @@ setup_peripherals() {
 }
 
 # --------------------------------------------------
+setup_greetd() {
+    echo -e "\n${GREEN}[*]${NC} Setting up greetd..."
+
+    if [ ! -f etc/greetd/config.toml ]; then
+        echo -e "${YELLOW}[!]${NC} etc/greetd/config.toml not found in repo. Skipping."
+        return
+    fi
+
+    sudo mkdir -p /etc/greetd
+    sudo cp etc/greetd/config.toml /etc/greetd/config.toml
+    echo -e "${GREEN}[✓]${NC} Copied greetd config"
+
+    sudo systemctl enable greetd 2>/dev/null && echo -e "${GREEN}[✓]${NC} greetd service enabled"
+    echo -e "  ${YELLOW}→${NC} Reboot to see the login screen"
+}
+
+# --------------------------------------------------
 setup_owner() {
     echo -e "\n${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "  ${GREEN}[owner] rifat's full restore${NC}"
@@ -176,10 +190,12 @@ setup_owner() {
     restore_core
     setup_mouse
     setup_peripherals
+    setup_greetd
     echo -e "\n${GREEN}[✓]${NC} Owner restore complete."
     echo -e "  ${YELLOW}→${NC} Reload theme in Helium (helium://extensions)"
     echo -e "  ${YELLOW}→${NC} Import stylus/stylus-chrome-extension.css into Stylus"
     echo -e "  ${YELLOW}→${NC} Reboot or relogin to pick up GTK/font changes"
+    echo -e "  ${YELLOW}→${NC} Mako notification config restored (restart with: pkill mako && mako)"
 }
 
 # --------------------------------------------------
@@ -188,15 +204,17 @@ menu() {
     echo -e "  ${CYAN}1${NC}  — Restore core configs only"
     echo -e "  ${CYAN}2${NC}  — Setup mouse battery (dongle + USB)"
     echo -e "  ${CYAN}3${NC}  — Setup headset battery"
-    echo -e "  ${CYAN}4${NC}  — Do all of the above"
+    echo -e "  ${CYAN}4${NC}  — Setup greetd (login screen)"
+    echo -e "  ${CYAN}5${NC}  — Do all of the above"
     echo -e "  ${CYAN}q${NC}  — Quit"
     echo ""
-    read -rp "  Choose [1-4/q]: " choice
+    read -rp "  Choose [1-5/q]: " choice
     case "$choice" in
         1) restore_core ;;
         2) setup_mouse ;;
         3) setup_peripherals ;;
-        4) restore_core; setup_mouse; setup_peripherals ;;
+        4) setup_greetd ;;
+        5) restore_core; setup_mouse; setup_peripherals; setup_greetd ;;
         q|Q) echo "  Bye."; exit 0 ;;
         *) echo "  Invalid."; menu ;;
     esac
@@ -214,7 +232,6 @@ echo ""
 if [ "$mode" = "2" ]; then
     setup_owner
 else
-    # Custom mode: accent color
     echo -e "${CYAN}[?]${NC} Use rifat's purple accent (#cba6f7) or your own?"
     echo "  1) Keep purple (#cba6f7)"
     echo -e "  2) Enter your own hex color"
@@ -223,7 +240,6 @@ else
         read -rp "  Enter hex color (e.g. aaaaaa or #ff6600): " usercolor
         usercolor="${usercolor#"#"}"
 
-        # Validate: must be 6 hex chars
         if [[ "$usercolor" =~ ^[0-9a-fA-F]{6}$ ]]; then
             ACCENT="${usercolor,,}"
             echo -e "${GREEN}[✓]${NC} Using accent #$ACCENT"
