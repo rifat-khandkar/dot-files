@@ -140,11 +140,10 @@ Skips all prompts — applies purple accent, installs all apps, configures mouse
 
 ``sudo pacman -S hyprland fuzzel foot waybar awww hyprpolkitagent ranger cliphist mako xdg-desktop-portal-hyprland``
 
-``sudo systemctl enable --now hyprpolkitagent``
+``systemctl --user enable --now hyprpolkitagent``
 
 ``systemctl --user enable --now mako ``
 
-``systemctl --user enable --now cliphist``
 
 **BROWSER**
 
@@ -154,11 +153,15 @@ Skips all prompts — applies purple accent, installs all apps, configures mouse
 
 ``sudo pacman -S greetd greetd-tuigreet``
 
+``sudo systemctl enable --now greetd``
+
 **ACCESSORIES**
 
 ``yay -S bibata-cursor-theme papirus-icon-theme``
 
+### FIXES
 
+bluetooth module will not show if u dont chmod +x the ~/.config/waybar/scripts/bluetooth.sh file
 
 
 
