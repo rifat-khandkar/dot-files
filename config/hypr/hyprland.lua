@@ -50,6 +50,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("awww-daemon")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme Papirus 2>/dev/null")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic 2>/dev/null")
+
 --  hl.exec_cmd("")
 end)
 
@@ -322,12 +323,12 @@ hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("printf 'Shutdown\nReboot\nLogout' | 
 end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+--hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
+--hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+--hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+--hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
@@ -400,3 +401,5 @@ hl.window_rule({
 ------------------------
 ---- EXTRA KEYBINDS ----
 ------------------------
+
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/ss/$(date +'%Y-%m-%d_%H-%M-%S').png"))
