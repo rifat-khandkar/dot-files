@@ -11,7 +11,7 @@
     ],
 
     "modules-center": [
-        "custom/clock"
+        "clock"
     ],
 
     "modules-right": [
@@ -31,11 +31,11 @@
         }
     },
 
-    "custom/clock": {
-        "exec": "/home/rifat/.config/waybar/scripts/clock.sh",
-        "return-type": "json",
-        "interval": 5,
-        "tooltip": false
+    "clock": {
+    // "timezone": "America/New_York",
+    "format": "  {:%I:%M %p}",
+    "format-alt": "{:%d %B %Y}",
+    "tooltip": false
     },
 
     "cpu": {
@@ -49,6 +49,7 @@
 
     "custom/memory": {
         "exec": "/home/rifat/.config/waybar/scripts/memory.sh",
+	"format-alt": "{:%e %b %Y}",
         "return-type": "json",
         "interval": 5,
         "tooltip": false
