@@ -60,7 +60,6 @@ window#waybar.hidden {
 #custom-headset-battery,
 #pulseaudio,
 #custom-bluetooth,
-#custom-clock,
 #clock {
     padding: 3px 10px;
     margin: 4px 0 4px 4px;
@@ -122,10 +121,6 @@ window#waybar.hidden {
     font-size: 0;
     min-width: 0;
     opacity: 0;
-}
-
-#custom-clock.night {
-    color: #e57373;
 }
 
 #custom-bluetooth.on {
