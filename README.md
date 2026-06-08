@@ -159,6 +159,11 @@ Skips all prompts — applies purple accent, installs all apps, configures mouse
 
 ``yay -S bibata-cursor-theme papirus-icon-theme``
 
+**USEFUL UTILITIES**
+
+``sudo pacman -S cliphist wl-clipboard slurp grim``
+
+
 ### FIXES
 
 bluetooth module will not show if u dont chmod +x the ~/.config/waybar/scripts/bluetooth.sh file
